@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Image title 1",
+    "imageURL": "/images/lagos1.jpeg"
+  },
+  {
+    "id": 2,
+    "title": "Image title 2",
+    "imageURL": "/images/lagos2.jpeg"
+  },
+  {
+    "id": 3,
+    "title": "Image title 3",
+    "imageURL": "/images/lagos1.jpeg"
+  },
+  {
+    "id": 4,
+    "title": "Image title 4",
+    "imageURL": "/images/lagos2.jpeg"
+  },
+  {
+    "id": 5,
+    "title": "Image title 5",
+    "imageURL": "/images/lagos1.jpeg"
+  },
+  {
+    "id": 6,
+    "title": "Image title 6",
+    "imageURL": "/images/lagos2.jpeg"
+  },
+  {
+    "id": 7,
+    "title": "Image title 7",
+    "imageURL": "/images/lagos1.jpeg"
+  },
+  {
+    "id": 8,
+    "title": "Image title 8",
+    "imageURL": "/images/lagos2.jpeg"
+  }
+]
