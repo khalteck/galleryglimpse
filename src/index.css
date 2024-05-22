@@ -24,20 +24,23 @@ header {
 header > div {
   @apply w-full flex gap-3 items-center border-b border-neutral-500/50 pb-4 md:pb-6;
 }
-
+.center-flex {
+  @apply flex justify-center items-center;
+}
 /* button styles */
 button {
-  @apply px-5 py-2 rounded-md font-bold flex gap-2 items-center;
+  @apply px-5 py-2 rounded-md flex gap-2 items-center;
 }
 button:hover {
   @apply bg-opacity-80;
 }
 .btn-primary {
-  @apply bg-secondary text-neutral-950;
+  @apply bg-secondary text-neutral-950 font-bold;
 }
-/* .btn-secondary {
-    @apply bg-gray-200 text-gray-900;
-  } */
+
+.btn-secondary {
+  @apply bg-transparent text-secondary/70 hover:text-secondary border border-secondary/70 hover:border-secondary w-full md:w-2/3 p-5 flex justify-center items-center;
+}
 
 /* random styles */
 
@@ -55,6 +58,10 @@ button:hover {
 
 .card-popup-overlay {
   @apply w-full h-[100px] bg-gradient-to-b from-[#1f1e20]/90 via-[#1f1e20]/50 to-transparent absolute top-0 left-0;
+}
+
+.loader-message-card {
+  @apply w-full text-[.95rem] md:text-[1.2rem] p-[25px] md:py-[20px] rounded-lg flex flex-col gap-4 justify-center items-center;
 }
 
 @layer utilities {
@@ -88,6 +95,6 @@ button:hover {
   }
 
   .blurry {
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(10px);
   }
 }

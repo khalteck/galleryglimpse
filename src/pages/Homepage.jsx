@@ -1,42 +1,111 @@
-import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/common/Header";
 import DisplayContainer from "../components/home/DisplayContainer";
 import SearchContainer from "../components/home/SearchContainer";
-import { IoClose } from "react-icons/io5";
-import { closeImage } from "../redux/features/imageExpandSlice";
+import ImagePopup from "../components/home/ImagePopup";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  useFetchImagesQuery,
+  useLazySearchImagesQuery,
+} from "../services/apiSlice";
+import { useEffect, useState } from "react";
+import {
+  setAllImageData,
+  setSearchedImagesData,
+} from "../redux/features/dataManagementSLice";
+import ErrorCard from "../components/home/ErrorCard";
 
 const Homepage = () => {
-  const expand = useSelector((state) => state.imageExpand.value);
   const dispatch = useDispatch();
 
-  console.log("expand", expand);
+  const expand = useSelector((state) => state.imageExpand.value);
+
+  const { limit } = useSelector((state) => state.dataManagement.value);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handlesearchInput = (e) => {
+    const { value } = e.target;
+    setSearchTerm(value);
+  };
+
+  //to fetch images data
+  const {
+    data: allImageData,
+    error: allImageError,
+    isLoading: allImageLoading,
+  } = useFetchImagesQuery(limit);
+
+  const [
+    triggerSearch,
+    { data: searchData, error: searchError, isLoading: searchLoading },
+  ] = useLazySearchImagesQuery();
+
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+
+  useEffect(() => {
+    if (allImageData) {
+      dispatch(setAllImageData(allImageData));
+    }
+    if (searchData) {
+      dispatch(setSearchedImagesData(searchData));
+    }
+  }, [searchData, allImageData]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (searchTerm.length > 2) {
+        setDebouncedSearchTerm(searchTerm);
+      }
+    }, 1800);
+
+    if (searchTerm === "") {
+      dispatch(setSearchedImagesData(null));
+    }
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      triggerSearch(debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm, triggerSearch]);
+
+  const handleCancelSearch = () => {
+    setSearchTerm("");
+    dispatch(setSearchedImagesData(null));
+  };
+
+  //   console.log("searchError", searchError);
 
   return (
     <>
       <Header />
       <main className="">
-        <SearchContainer />
+        <SearchContainer
+          searchTerm={searchTerm}
+          handlesearchInput={handlesearchInput}
+          handleCancelSearch={handleCancelSearch}
+        />
 
-        <DisplayContainer />
+        {(!allImageError || !searchError) && (
+          <DisplayContainer
+            searchTerm={searchTerm}
+            allImageLoading={allImageLoading}
+            searchLoading={searchLoading}
+          />
+        )}
+
+        {(allImageError || searchError) && (
+          <div className="mt-10">
+            <ErrorCard />
+          </div>
+        )}
       </main>
 
-      {expand && (
-        <div className="w-full h-screen fixed top-0 left-0 blurry expand bg-[#1f1e20]/60 py-[80px] flex flex-col items-center">
-          <div
-            onClick={() => dispatch(closeImage())}
-            className="bg-[#1f1e20] rounded-full p-3 absolute top-3 left-[50%] translate-x-[-50%] border border-neutral-500 cursor-pointer"
-          >
-            <IoClose size={"20px"} color="white" />
-          </div>
-          <div className="w-[80%] max-w-[1500px] h-fit md:h-full relative bg-[#1f1e20] p-3 lg:p-5">
-            <img
-              alt=""
-              src={expand?.imageURL}
-              className="w-full h-auto md:h-full object-cover"
-            />
-          </div>
-        </div>
-      )}
+      {expand && <ImagePopup />}
     </>
   );
 };
