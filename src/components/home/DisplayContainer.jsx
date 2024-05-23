@@ -6,31 +6,40 @@ import BtnSecondary from "../common/BtnSecondary";
 import { increaseLimit } from "../../redux/features/dataManagementSLice";
 import { useEffect, useState } from "react";
 
-const DisplayContainer = ({ searchTerm, allImageLoading, searchLoading }) => {
+const DisplayContainer = ({
+  searchTerm,
+  allImageLoading,
+  searchLoading,
+  subsequentSearchLoading,
+}) => {
+  // Accessing state data from the Redux store
   const { allImagesData, searchedImagesData } = useSelector(
     (state) => state.dataManagement.value
   );
 
   const dispatch = useDispatch();
 
+  // Determine which data to display based on whether there's a search term
   const data = searchTerm ? searchedImagesData : allImagesData;
 
+  // Local state to manage the loading status for loading more images
   const [loadingMore, setLoadingMore] = useState(false);
 
+  // Function to handle increasing the limit for loading more images
   function handleLimitIncrease() {
     setLoadingMore(true);
     dispatch(increaseLimit());
   }
 
+  // Effect to reset the loading state after data is fetched
   useEffect(() => {
     setLoadingMore(false);
   }, [allImagesData]);
 
-  //   console.log("searchLoading", searchLoading);
-
   return (
     <section className="w-full my-10">
       <div>
+        {/* Display appropriate heading based on search term */}
         {searchTerm ? (
           <>
             <h2>Filter results ({data?.products?.length || 0})</h2>
@@ -40,6 +49,7 @@ const DisplayContainer = ({ searchTerm, allImageLoading, searchLoading }) => {
         )}
       </div>
 
+      {/* Display images if not loading */}
       {!allImageLoading && !searchLoading && (
         <div className="grid-container mt-10">
           {data?.products?.map((item, index) => {
@@ -48,6 +58,7 @@ const DisplayContainer = ({ searchTerm, allImageLoading, searchLoading }) => {
         </div>
       )}
 
+      {/* Show 'Load more' button if not searching */}
       {data && !searchTerm && (
         <div className="mt-10">
           {loadingMore && (
@@ -60,17 +71,18 @@ const DisplayContainer = ({ searchTerm, allImageLoading, searchLoading }) => {
               type={"load"}
               action={handleLimitIncrease}
               title={"Load more"}
+              disabled={loadingMore}
             />
           </div>
         </div>
       )}
-      <>
-        {(allImageLoading || searchLoading) && (
-          <div className="w-full h-[300px] border-primary/20 border rounded-lg flex center-flex mt-10">
-            <LoaderMessageCard />
-          </div>
-        )}
-      </>
+
+      {/* Show loading spinner if any loading state is true */}
+      {(allImageLoading || searchLoading || subsequentSearchLoading) && (
+        <div className="w-full h-[300px] border-primary/20 border rounded-lg flex center-flex mt-10">
+          <LoaderMessageCard />
+        </div>
+      )}
     </section>
   );
 };

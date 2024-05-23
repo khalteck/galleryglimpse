@@ -1,10 +1,8 @@
 import { IoImage } from "react-icons/io5";
 
-const BtnSecondary = ({ action, title, type }) => {
-  const icon = type === "load" ? <IoImage size={"20px"} /> : "";
+const BtnSecondary = ({ action, title, type, disabled }) => {
   return (
-    <button onClick={action} className="btn-secondary">
-      {/* {icon} */}
+    <button onClick={action} disabled={disabled} className="btn-secondary">
       {title}
     </button>
   );

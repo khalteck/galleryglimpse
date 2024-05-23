@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { IoImage } from "react-icons/io5";
+import { IoImage } from "react-icons/io5"; // Importing image icon
 import { useDispatch } from "react-redux";
 import { displayImage } from "../../redux/features/imageExpandSlice";
 import BtnPrimary from "../common/BtnPrrimary";
 
 const ImageCard = ({ item }) => {
-  const [hoverId, setHoverId] = useState(null);
+  const [hoverId, setHoverId] = useState(null); // State to track hovering
 
   const dispatch = useDispatch();
+
   return (
     <div
-      onMouseOver={() => setHoverId(item?.id)}
-      onMouseOut={() => setHoverId(null)}
+      onMouseOver={() => setHoverId(item?.id)} // Set hoverId when mouse enters
+      onMouseOut={() => setHoverId(null)} // Reset hoverId when mouse leaves
       className="card relative flex"
     >
       <img
@@ -26,12 +27,14 @@ const ImageCard = ({ item }) => {
           <p className="font-medium">{item?.title}</p>
         </div>
       </div>
+      {/* Show button overlay if hoverId matches item.id */}
       {hoverId === item?.id && (
         <div className="card-popup-overlay center-flex quickview">
+          {/* Button to view image */}
           <BtnPrimary
-            type={"thumnail"}
-            action={() => dispatch(displayImage(item))}
-            title={"View image"}
+            type={"thumbnail"} // Type of button
+            action={() => dispatch(displayImage(item))} // Dispatch action to display image
+            title={"View image"} // Button title
           />
         </div>
       )}
