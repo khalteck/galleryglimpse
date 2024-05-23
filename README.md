@@ -52,6 +52,7 @@ The app follows a component-based architecture, with each feature encapsulated i
 ## Testing
 
 - Vitest (a faster light-weight alternative to Jest, which utilizes Jest-DOM, React-testng-library) is used for Unit testing, Vitest, uses the same pipeline, plugins, and configurations as Vite, drastically simplifying and speeding up the testing process.
+- Run test by `yarn test`
 
 ## Credits
 
