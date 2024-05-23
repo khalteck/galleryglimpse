@@ -46,4 +46,4 @@ The app follows a component-based architecture, with each feature encapsulated i
 
 ## Credits
 
-This app was created by Khalid Oyeneye as a project for 1840andCo's 4th stage interview - Take-Home Assignment: React Frontend Developer.
+This app was created by Khalid Oyeneye as a project for 1840&Company's 4th stage interview - Take-Home Assignment: React Frontend Developer.

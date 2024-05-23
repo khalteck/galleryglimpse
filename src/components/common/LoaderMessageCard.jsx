@@ -7,7 +7,7 @@ const LoaderMessageCard = () => {
         One moment please, <br />
         we're untangling the pixels.
       </p>
-      <BarLoader color={"#fff"} size={30} />
+      <BarLoader color={"#f28b82"} size={30} />
     </div>
   );
 };
