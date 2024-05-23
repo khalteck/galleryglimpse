@@ -8,7 +8,7 @@ const ImagePopup = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full h-screen fixed top-0 left-0 blurry expand bg-[#1f1e20]/80 py-[80px] flex flex-col items-center overflow-y-auto">
+    <div className="w-full h-screen fixed top-0 left-0 blurry expand bg-[#1f1e20]/40 py-[80px] flex flex-col items-center overflow-y-auto">
       {/* Close button */}
       <div
         onClick={() => dispatch(closeImage())}
@@ -18,7 +18,7 @@ const ImagePopup = () => {
         <IoClose size={"20px"} color="white" />
       </div>
       {/* Image container */}
-      <div className="w-[90%] md:w-[80%] max-w-[1500px] h-fit md:h-full relative bg-[#1f1e20] p-3 lg:p-5">
+      <div className="w-[90%] md:w-[80%] max-w-[1500px] h-fit md:h-full relative bg-[#1f1e20] p-3 lg:p-5 border border-neutral-500/40 rounded-lg">
         {/* Render the expanded image */}
         <img
           alt={`image-${expand?.id}`}
