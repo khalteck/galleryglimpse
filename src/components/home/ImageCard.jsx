@@ -14,6 +14,7 @@ const ImageCard = ({ item }) => {
       onMouseOver={() => setHoverId(item?.id)} // Set hoverId when mouse enters
       onMouseOut={() => setHoverId(null)} // Reset hoverId when mouse leaves
       className="card relative flex"
+      role="image"
     >
       <img
         alt="iamge 1"
