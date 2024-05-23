@@ -44,6 +44,15 @@ The app follows a component-based architecture, with each feature encapsulated i
 - **React Icons:** Used for displaying icons throughout the app.
 - **React Spinners:** Used for displaying loading spinners.
 
+## Other information
+
+- **Env variables** The API baseUrl is the one and only env variable used, this was also congifured directly on netlify.
+- **In case of env issues** The content of my env file is: `VITE_API_BASE_URL=https://dummyjson.com/`
+
+## Testing
+
+- Vitest (a faster light-weight alternative to Jest, which utilizes Jest-DOM, React-testng-library) is used for Unit testing, Vitest, uses the same pipeline, plugins, and configurations as Vite, drastically simplifying and speeding up the testing process.
+
 ## Credits
 
 This app was created by Khalid Oyeneye as a project for 1840&Company's 4th stage interview - Take-Home Assignment: React Frontend Developer.

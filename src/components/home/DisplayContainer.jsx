@@ -45,7 +45,7 @@ const DisplayContainer = ({
             <h2>Filter results ({data?.products?.length || 0})</h2>
           </>
         ) : (
-          <h2>Images</h2>
+          <h2>All Images</h2>
         )}
       </div>
 

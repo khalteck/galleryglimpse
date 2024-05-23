@@ -1,18 +1,18 @@
-import Header from "../components/common/Header";
-import DisplayContainer from "../components/home/DisplayContainer";
-import SearchContainer from "../components/home/SearchContainer";
-import ImagePopup from "../components/home/ImagePopup";
+import Header from "../../components/common/Header";
+import DisplayContainer from "../../components/home/DisplayContainer";
+import SearchContainer from "../../components/home/SearchContainer";
+import ImagePopup from "../../components/home/ImagePopup";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useFetchImagesQuery,
   useLazySearchImagesQuery,
-} from "../services/apiSlice";
+} from "../../services/apiSlice";
 import { useEffect, useState } from "react";
 import {
   setAllImageData,
   setSearchedImagesData,
-} from "../redux/features/dataManagementSLice";
-import ErrorCard from "../components/home/ErrorCard";
+} from "../../redux/features/dataManagementSLice";
+import ErrorCard from "../../components/home/ErrorCard";
 
 const Homepage = () => {
   const dispatch = useDispatch();

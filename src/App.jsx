@@ -9,11 +9,12 @@ import Loader from "./components/common/Loader";
 import { lazy, Suspense } from "react";
 
 // Code splitting - dynamic import of components
-const Homepage = lazy(() => import("./pages/Homepage"));
+const Homepage = lazy(() => import("./pages/home/Homepage"));
 
 function App() {
   return (
     // Suspense component to show a fallback (Loader) while the lazy-loaded component is being fetched
+
     <Suspense fallback={<Loader />}>
       {/* Routes component to define application routes */}
       <Routes>

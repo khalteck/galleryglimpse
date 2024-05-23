@@ -11,6 +11,7 @@ const SearchContainer = ({
       {/* Form to handle search input, prevents default form submission */}
       <form
         onSubmit={(e) => e.preventDefault()}
+        data-testid="search-form"
         className="w-full lg:w-[50%] rounded-md border border-neutral-500/50 flex"
       >
         <div className="w-12 center-flex">
@@ -29,6 +30,7 @@ const SearchContainer = ({
         {searchTerm && (
           <div
             onClick={handleCancelSearch}
+            data-testid="cancel-button"
             className="bg-[#1f1e20] rounded-md w-14 center-flex cursor-pointer"
           >
             {/* Close icon */}
