@@ -81,6 +81,7 @@ const Homepage = () => {
   // Effect to trigger search based on the debounced search term
   useEffect(() => {
     if (debouncedSearchTerm) {
+      dispatch(setSearchedImagesData(null));
       triggerSearch(debouncedSearchTerm);
       setSubsequentSearchLoading(true);
     }
