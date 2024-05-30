@@ -6,7 +6,7 @@ const initialState = {
     allImagesData: [], // Holds all image data
     searchedImagesData: [], // Holds searched image data
     limit: 15, // Initial limit for the number of images to fetch
-    skip: 0,
+    skip: 0, // to set "fetch after" id for pagination
   },
 };
 
@@ -26,10 +26,6 @@ export const dataManagementSlice = createSlice({
     setSearchedImagesData: (state, action) => {
       state.value.searchedImagesData = action.payload;
     },
-    // // Reducer to increase the limit for fetching more images
-    // increaseLimit: (state) => {
-    //   state.value.limit += 15;
-    // },
     // Reducer to increase the skip for fetching more images
     increaseSkip: (state) => {
       state.value.skip += 15;

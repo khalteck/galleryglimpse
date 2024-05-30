@@ -42,10 +42,6 @@ const Homepage = () => {
     isLoading: allImageLoading,
   } = useFetchImagesQuery(skip);
 
-  const url = `products?limit=15${skip ? `&skip=${skip}` : ""}`;
-
-  console.log("allImagesData", allImagesData);
-
   // Lazy search query setup using the custom hook from the API slice
   const [
     triggerSearch,
