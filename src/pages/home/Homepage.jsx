@@ -19,7 +19,9 @@ const Homepage = () => {
 
   // Get the state for image expansion and limit from the Redux store
   const expand = useSelector((state) => state.imageExpand.value);
-  const { limit } = useSelector((state) => state.dataManagement.value);
+  const { skip, allImagesData } = useSelector(
+    (state) => state.dataManagement.value
+  );
 
   // Local state for managing the search term
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,7 +40,11 @@ const Homepage = () => {
     data: allImageData,
     error: allImageError,
     isLoading: allImageLoading,
-  } = useFetchImagesQuery(limit);
+  } = useFetchImagesQuery(skip);
+
+  const url = `products?limit=15${skip ? `&skip=${skip}` : ""}`;
+
+  console.log("allImagesData", allImagesData);
 
   // Lazy search query setup using the custom hook from the API slice
   const [
@@ -52,10 +58,10 @@ const Homepage = () => {
   // Effect to dispatch actions when new data is fetched
   useEffect(() => {
     if (allImageData) {
-      dispatch(setAllImageData(allImageData));
+      dispatch(setAllImageData(allImageData?.products));
     }
     if (searchData) {
-      dispatch(setSearchedImagesData(searchData));
+      dispatch(setSearchedImagesData(searchData?.products));
     }
     setSubsequentSearchLoading(false);
   }, [searchData, allImageData]);

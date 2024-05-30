@@ -3,7 +3,7 @@ import ImageCard from "./ImageCard";
 import { BarLoader, ClipLoader } from "react-spinners";
 import LoaderMessageCard from "../common/LoaderMessageCard";
 import BtnSecondary from "../common/BtnSecondary";
-import { increaseLimit } from "../../redux/features/dataManagementSLice";
+import { increaseSkip } from "../../redux/features/dataManagementSLice";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
@@ -29,7 +29,7 @@ const DisplayContainer = ({
   // Function to handle increasing the limit for loading more images
   function handleLimitIncrease() {
     setLoadingMore(true);
-    dispatch(increaseLimit());
+    dispatch(increaseSkip());
   }
 
   // Effect to reset the loading state after data is fetched
@@ -53,14 +53,14 @@ const DisplayContainer = ({
       {/* Display images if not loading */}
       {!allImageLoading && !searchLoading && (
         <div className="grid-container mt-10">
-          {data?.products?.map((item, index) => {
+          {data?.map((item, index) => {
             return <ImageCard key={index} item={item} />;
           })}
         </div>
       )}
 
       {/* Show 'Load more' button if not searching */}
-      {data && !searchTerm && (
+      {data?.length > 0 && !searchTerm && (
         <div className="mt-10">
           {loadingMore && (
             <div className="center-flex mb-5">
@@ -69,7 +69,7 @@ const DisplayContainer = ({
           )}
           <div className="center-flex">
             <BtnSecondary
-              type={"load"}
+              // type={"load"}
               action={handleLimitIncrease}
               title={"Load more"}
               disabled={loadingMore}

@@ -13,7 +13,7 @@ export const imageApi = createApi({
   endpoints: (builder) => ({
     // Define a query endpoint to fetch images with a limit
     fetchImages: builder.query({
-      query: (limit) => `products?limit=${limit}`,
+      query: (skip) => `products?limit=15${skip ? `&skip=${skip}` : ""}`,
     }),
     // Define a query endpoint to search for images by title
     searchImages: builder.query({

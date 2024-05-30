@@ -1,4 +1,5 @@
 import { IoImage } from "react-icons/io5"; // Importing image icon
+import PropTypes from "prop-types";
 
 const BtnPrimary = ({ action, title, type }) => {
   // Conditionally render icon based on the button type
@@ -16,3 +17,10 @@ const BtnPrimary = ({ action, title, type }) => {
 };
 
 export default BtnPrimary;
+
+//define proptypes
+BtnPrimary.propTypes = {
+  action: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
