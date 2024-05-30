@@ -5,6 +5,7 @@ import LoaderMessageCard from "../common/LoaderMessageCard";
 import BtnSecondary from "../common/BtnSecondary";
 import { increaseLimit } from "../../redux/features/dataManagementSLice";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const DisplayContainer = ({
   searchTerm,
@@ -88,3 +89,11 @@ const DisplayContainer = ({
 };
 
 export default DisplayContainer;
+
+//define proptypes
+DisplayContainer.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  allImageLoading: PropTypes.bool.isRequired,
+  searchLoading: PropTypes.bool.isRequired,
+  subsequentSearchLoading: PropTypes.bool.isRequired,
+};

@@ -1,5 +1,6 @@
 import { CgSearch } from "react-icons/cg"; // Importing search icon
 import { IoClose } from "react-icons/io5"; // Importing close icon
+import PropTypes from "prop-types";
 
 const SearchContainer = ({
   searchTerm,
@@ -47,3 +48,10 @@ const SearchContainer = ({
 };
 
 export default SearchContainer;
+
+//define proptypes
+SearchContainer.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  handlesearchInput: PropTypes.func.isRequired,
+  handleCancelSearch: PropTypes.func.isRequired,
+};

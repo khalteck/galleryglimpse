@@ -3,6 +3,7 @@ import { IoImage } from "react-icons/io5"; // Importing image icon
 import { useDispatch } from "react-redux";
 import { displayImage } from "../../redux/features/imageExpandSlice";
 import BtnPrimary from "../common/BtnPrrimary";
+import PropTypes from "prop-types";
 
 const ImageCard = ({ item }) => {
   const [hoverId, setHoverId] = useState(null); // State to track hovering
@@ -44,3 +45,8 @@ const ImageCard = ({ item }) => {
 };
 
 export default ImageCard;
+
+//define proptypes
+ImageCard.propTypes = {
+  item: PropTypes.object.isRequired,
+};
